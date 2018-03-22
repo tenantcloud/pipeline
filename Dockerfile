@@ -11,7 +11,7 @@ RUN \
  echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen &&\
  locale-gen en_US.UTF-8 &&\
  /usr/sbin/update-locale LANG=en_US.UTF-8 &&\
- apt-get -y --no-install-recommends install wget locales apt-utils lsb-release apt-transport-https ruby python python3 \
+ apt-get install -y --no-install-recommends wget locales apt-utils lsb-release apt-transport-https ruby python python3 \
  perl ca-certificates git imagemagick openssh-client zip zlib1g-dev libicu-dev libpng-dev g++ &&\
  docker-php-ext-configure intl &&\
  docker-php-ext-install intl gd zip pdo pdo_mysql &&\
@@ -19,9 +19,9 @@ RUN \
  apt-get update &&\
  echo "mysql-server mysql-server/root_password password root" | debconf-set-selections &&\
  echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections &&\
- apt-get -y --no-install-recommends install mysql-community-server mysql-client &&\
+ apt-get install -y --no-install-recommends mysql-community-server mysql-client &&\
  curl -sL https://deb.nodesource.com/setup_8.x | bash - &&\
- apt-get -y --no-install-recommends install nodejs &&\
+ apt-get install -y --no-install-recommends nodejs &&\
  apt-get autoclean && apt-get clean && apt-get autoremove
 
 RUN \
