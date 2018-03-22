@@ -5,8 +5,7 @@ MAINTAINER Igor Bronovskyi <admin@brun.if.ua>
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update
-RUN apt-get -y --no-install-recommends wget install locales apt-utils lsb-release apt-transport-https ruby python python3 \
-    perl ca-certificates git imagemagick openssh-client zip zlib1g-dev libicu-dev libpng-dev g++
+RUN apt-get -y --no-install-recommends wget install locales apt-utils lsb-release apt-transport-https ruby python python3 perl ca-certificates git imagemagick openssh-client zip zlib1g-dev libicu-dev libpng-dev g++
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl gd zip pdo pdo_mysql
 RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.9-1_all.deb -O mysql.deb && dpkg -i mysql.deb && rm mysql.deb
