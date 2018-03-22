@@ -1,4 +1,4 @@
-# Pipline image for Laravel 5.5+
+# Pipeline image for Laravel 5.5+
 
 [Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) [Docker](https://www.docker.com/) image based on [Debian/Jessie](https://www.debian.org/releases/jessie/) with [PHP 7.1.1](http://php.net/)/[MySQL](https://www.mysql.com)
 
