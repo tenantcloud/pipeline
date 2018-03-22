@@ -3,13 +3,8 @@ FROM php:7.1
 MAINTAINER Igor Bronovskyi <admin@brun.if.ua>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV LC_ALL en_US.UTF-8
-ENV LANGUAGE en_US:en
 
 RUN apt-get update
-RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-RUN locale-gen en_US.UTF-8
-RUN /usr/sbin/update-locale LANG=en_US.UTF-8
 RUN apt-get -y --no-install-recommends wget install locales apt-utils lsb-release apt-transport-https ruby python python3 \
     perl ca-certificates git imagemagick openssh-client zip zlib1g-dev libicu-dev libpng-dev g++
 RUN docker-php-ext-configure intl
