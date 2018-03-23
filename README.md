@@ -1,6 +1,6 @@
 # Pipeline image for Laravel 5.5+
 
-[Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) [Docker](https://www.docker.com/) image based on [Debian/Jessie](https://www.debian.org/releases/jessie/) with [PHP 7.1.1](http://php.net/)/[MySQL](https://www.mysql.com)
+[Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) [Docker](https://www.docker.com/) image based on [Debian/Jessie](https://www.debian.org/releases/jessie/) with [PHP 7.1 {latest}](http://php.net/)/[MySQL](https://www.mysql.com)
 
 More help in Bitbucket's [Confluence](https://confluence.atlassian.com/bitbucket/bitbucket-pipelines-beta-792496469.html)
 
