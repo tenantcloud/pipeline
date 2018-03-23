@@ -3,26 +3,19 @@ FROM php:7.1.1
 MAINTAINER Igor Bronovskyi <admin@brun.if.ua>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV LC_ALL en_US.UTF-8
-ENV LANGUAGE en_US:en
 
-RUN \
- apt-get update &&\
- echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen &&\
- locale-gen en_US.UTF-8 &&\
- /usr/sbin/update-locale LANG=en_US.UTF-8 &&\
- apt-get install -y wget locales apt-utils lsb-release apt-transport-https ruby python python3 \
- perl ca-certificates git imagemagick openssh-client zip zlib1g-dev libicu-dev libpng-dev g++ &&\
- docker-php-ext-configure intl &&\
- docker-php-ext-install intl gd zip pdo pdo_mysql &&\
- wget https://dev.mysql.com/get/mysql-apt-config_0.8.9-1_all.deb -O mysql.deb && dpkg -i mysql.deb && rm mysql.deb &&\
- apt-get update &&\
- echo "mysql-server mysql-server/root_password password root" | debconf-set-selections &&\
- echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections &&\
- apt-get install -y mysql-community-server mysql-client &&\
- curl -sL https://deb.nodesource.com/setup_8.x | bash - &&\
- apt-get install -y nodejs &&\
- apt-get autoclean && apt-get clean && apt-get autoremove
+RUN apt-get update
+RUN apt-get install -qy wget locales apt-utils lsb-release apt-transport-https ruby python python3 perl ca-certificates git imagemagick openssh-client zip zlib1g-dev libicu-dev libpng-dev g++
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-install intl gd zip pdo pdo_mysql
+RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.9-1_all.deb -O mysql.deb && dpkg -i mysql.deb && rm mysql.deb
+RUN apt-get update
+RUN echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
+RUN echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
+RUN apt-get install -y mysql-community-server mysql-client
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get install -y nodejs
+RUN apt-get autoclean && apt-get clean && apt-get autoremove
 
 RUN \
  curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/usr/bin &&\
