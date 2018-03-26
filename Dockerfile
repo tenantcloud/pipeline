@@ -8,11 +8,11 @@ RUN apt-get update
 RUN apt-get install -qy wget locales apt-utils lsb-release apt-transport-https ruby python python3 perl ca-certificates git imagemagick openssh-client zip zlib1g-dev libicu-dev libpng-dev g++
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl gd zip pdo pdo_mysql
-RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.9-1_all.deb -O mysql.deb && dpkg -i mysql.deb && rm mysql.deb
+RUN wget https://repo.percona.com/apt/percona-release_0.1-4.$(lsb_release -sc)_all.deb && dpkg -i percona-release_0.1-4.$(lsb_release -sc)_all.deb && rm percona-release_0.1-4.$(lsb_release -sc)_all.deb
 RUN apt-get update
 RUN echo "mysql-server mysql-server/root_password password root" | debconf-set-selections
 RUN echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections
-RUN apt-get install -y mysql-community-server mysql-client
+RUN apt-get install -y percona-server-server-5.7
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
 RUN apt-get autoclean && apt-get clean && apt-get autoremove
