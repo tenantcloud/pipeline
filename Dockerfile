@@ -14,6 +14,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y --force-yes build-essential curl gcc git libmcrypt4 libpcre3-dev \
         make python2.7 python-pip sendmail supervisor unattended-upgrades unzip whois redis-server \
+        ruby-dev libsqlite3-dev \
     && apt-get install -y --force-yes php7.1-cli php7.1-dev \
         php7.1-pgsql php7.1-sqlite3 php7.1-gd \
         php7.1-curl php7.1-memcached \
@@ -22,6 +23,7 @@ RUN apt-get update \
         php7.1-intl php7.1-readline php7.1-mcrypt php7.1-fpm \
     && curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer \
     && curl --silent --location https://deb.nodesource.com/setup_8.x | bash - \
+    && gem install mailcatcher \
     && apt-get update && apt-get install -y --force-yes nodejs \
     && echo "mysql-server mysql-server/root_password password root" | debconf-set-selections \
     && echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections \
