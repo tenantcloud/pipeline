@@ -40,3 +40,17 @@ pipelines:
             - ln -s $(pwd)/node_modules $(pwd)/public/
             - npm run test
 ```
+
+## Use localy
+
+```bash
+cd /home/user/code
+git archive --remote=ssh://git@bitbucket.org/brun/site.git --format=zip --output="site.zip" release
+unzip site.zip -d site
+rm site.zip
+docker run --rm -it -v /home/user/code/site:/var/www/html tenantcloud/pipeline /pipeline.sh
+## or run unit test and stop on failure
+# docker run --rm -it -v /home/user/code/site:/var/www/html tenantcloud/pipeline /pipeline-on-failure.sh
+```
+
+More information on this likn [https://ukietech.atlassian.net/wiki/x/awFNLg](https://ukietech.atlassian.net/wiki/x/awFNLg)

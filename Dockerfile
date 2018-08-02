@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTAINER Igor Bronovskyi <admin@brun.if.ua>
+LABEL maintainer.name="Igor Bronovskyi" maintainer.email="admin@brun.if.ua"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -40,3 +40,5 @@ RUN apt-get update \
     && apt-get autoclean && apt-get clean && apt-get autoremove \
     && rm -rf /root/.npm /root/.composer /tmp/* /var/lib/apt/lists/*
 
+ADD ./pipeline.sh /pipeline.sh
+ADD ./pipeline-on-failure.sh /pipeline-on-failure.sh
