@@ -41,4 +41,5 @@ RUN apt-get update \
     && rm -rf /root/.npm /root/.composer /tmp/* /var/lib/apt/lists/*
 
 ADD ./pipeline.sh /pipeline.sh
+ADD ./pipeline-testdox.sh /pipeline-testdox.sh
 ADD ./pipeline-on-failure.sh /pipeline-on-failure.sh
