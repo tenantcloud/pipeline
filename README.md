@@ -1,6 +1,6 @@
 # Pipeline image for Laravel 5.5+
 
-[Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) [Docker](https://www.docker.com/) image based on [Ubuntu 16.04](https://ubuntu.com/) with [PHP 7.1 {latest}](http://php.net/)/[MySQL 5.7](https://www.mysql.com)/[Minoi.io](https://minio.io)
+[Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) [Docker](https://www.docker.com/) image based on [Ubuntu 16.04](https://ubuntu.com/) with [PHP 7.1 {latest}](http://php.net/)/[MySQL 5.7](https://www.mysql.com)/[Minio.io](https://minio.io)
 
 More help in Bitbucket's [Confluence](https://confluence.atlassian.com/bitbucket/bitbucket-pipelines-beta-792496469.html)
 
