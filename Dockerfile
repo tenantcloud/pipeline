@@ -50,7 +50,9 @@ RUN sed -i "s/;opcache.enable=1/opcache.enable=1/" /etc/php/7.1/cli/php.ini \
 	&& sed -i "s/;opcache.save_comments=1/opcache.save_comments=1/" /etc/php/7.1/cli/php.ini \
 	&& sed -i "s/;opcache.fast_shutdown=0/opcache.fast_shutdown=0/" /etc/php/7.1/cli/php.ini
 RUN curl -o /usr/local/bin/minio https://dl.minio.io/server/minio/release/linux-amd64/minio \ 
-	&& chmod +x /usr/local/bin/minio
+	&& chmod +x /usr/local/bin/minio \
+	&& curl -o /usr/local/bin/minio-client https://dl.minio.io/client/mc/release/linux-amd64/mc \
+	&& chmod +x /usr/local/bin/minio-client
 
 
 ADD ./minio /etc/init.d/minio
