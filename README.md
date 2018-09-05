@@ -1,6 +1,6 @@
 # Pipeline image for Laravel 5.5+
 
-[Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) [Docker](https://www.docker.com/) image based on [Ubuntu 16.04](https://ubuntu.com/) with [PHP 7.1 {latest}](http://php.net/)/[MySQL](https://www.mysql.com)
+[Bitbucket Pipelines](https://bitbucket.org/product/features/pipelines) [Docker](https://www.docker.com/) image based on [Ubuntu 16.04](https://ubuntu.com/) with [PHP 7.1 {latest}](http://php.net/)/[MySQL 5.7](https://www.mysql.com)/[Minoi.io](https://minio.io)
 
 More help in Bitbucket's [Confluence](https://confluence.atlassian.com/bitbucket/bitbucket-pipelines-beta-792496469.html)
 
@@ -30,6 +30,7 @@ pipelines:
             - cp .env.pipeline .env
             - service mysql restart
             - service redis-server restart
+            - service minio restart
             - mailcatcher
             - sleep 10 && mysql -uroot -proot -e 'create database tenantcloud;'
             - composer install --no-interaction --no-progress --prefer-dist

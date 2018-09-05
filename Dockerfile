@@ -40,6 +40,20 @@ RUN apt-get update \
     && apt-get autoclean && apt-get clean && apt-get autoremove \
     && rm -rf /root/.npm /root/.composer /tmp/* /var/lib/apt/lists/*
 
+# Configuration
+RUN sed -i "s/;opcache.enable=1/opcache.enable=1/" /etc/php/7.1/cli/php.ini \
+	&& sed -i "s/;opcache.enable_cli=0/opcache.enable_cli=1/" /etc/php/7.1/cli/php.ini \
+	&& sed -i "s/;opcache.memory_consumption=128/opcache.memory_consumption=512/" /etc/php/7.1/cli/php.ini \
+	&& sed -i "s/;opcache.interned_strings_buffer=8/opcache.interned_strings_buffer=32/" /etc/php/7.1/cli/php.ini \
+	&& sed -i "s/;opcache.max_accelerated_files=10000/opcache.max_accelerated_files=32531/" /etc/php/7.1/cli/php.ini \
+	&& sed -i "s/;opcache.validate_timestamps=1/opcache.validate_timestamps=1/" /etc/php/7.1/cli/php.ini \
+	&& sed -i "s/;opcache.save_comments=1/opcache.save_comments=1/" /etc/php/7.1/cli/php.ini \
+	&& sed -i "s/;opcache.fast_shutdown=0/opcache.fast_shutdown=0/" /etc/php/7.1/cli/php.ini
+RUN curl -o /usr/local/bin/minio https://dl.minio.io/server/minio/release/linux-amd64/minio \ 
+	&& chmod +x /usr/local/bin/minio
+
+
+ADD ./minio /etc/init.d/minio
 ADD ./pipeline.sh /pipeline.sh
 ADD ./pipeline-testdox.sh /pipeline-testdox.sh
 ADD ./pipeline-on-failure.sh /pipeline-on-failure.sh
