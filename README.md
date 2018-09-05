@@ -8,7 +8,7 @@ Docker image at [tenantcloud/pipline](https://hub.docker.com/r/tenantcloud/pipel
 
 ## Packages installed
 
- - `php7.1`, `mysql-server 5.7`, `mysql-client`, `git`, `composer`,  etc
+ - `php7.1`, `mysql-server 5.7`, `mysql-client`, `git`, `composer`, `minio`  etc
  - Latest [Composer](https://getcomposer.org/), [Gulp](http://gulpjs.com/), [Webpack](https://webpack.github.io/), [Mocha](https://mochajs.org/), [Grunt](http://gruntjs.com/), [Codeception](http://codeception.com/), work with [KarmaJS](https://karma-runner.github.io/2.0/index.html)
 
 ## Environments
@@ -35,6 +35,7 @@ pipelines:
             - sleep 10 && mysql -uroot -proot -e 'create database tenantcloud;'
             - composer install --no-interaction --no-progress --prefer-dist
             - php artisan migrate --force
+            - php artisan route:cache
             - vendor/bin/phpunit -c phpunit-pipeline.xml tests/Backend
             - npm install --ignore-scripts
             - gulp

@@ -13,4 +13,5 @@ minio-client mb pipeline
 composer install --no-interaction --no-progress --prefer-dist
 php artisan migrate --force
 php artisan config:cache
+php artisan route:cache
 vendor/bin/phpunit -c phpunit.xml --testdox tests/Backend
