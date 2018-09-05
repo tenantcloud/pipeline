@@ -8,6 +8,8 @@ service redis-server restart
 service minio restart
 mailcatcher
 mysql -uroot -proot -e 'create database tenantcloud;'
+minio-client config host add s3 http://127.0.0.1:9000 pipeline pipeline
+minio-client mb pipeline
 composer install --no-interaction --no-progress --prefer-dist
 php artisan migrate --force
 php artisan config:cache
