@@ -14,7 +14,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y --force-yes build-essential curl gcc git libmcrypt4 libpcre3-dev \
         make python2.7 python-pip sendmail supervisor unattended-upgrades unzip whois redis-server \
-        ruby-dev libsqlite3-dev libxrender1 \
+        ruby-dev libsqlite3-dev libxrender1 dbus-user-session \
     && apt-get install -y --force-yes php7.1-cli php7.1-dev \
         php7.1-pgsql php7.1-sqlite3 php7.1-gd \
         php7.1-curl php7.1-memcached \
@@ -37,6 +37,7 @@ RUN apt-get update \
     && sed -i '/^bind-address/s/bind-address.*=.*/bind-address = */' /etc/mysql/mysql.conf.d/mysqld.cnf \
     && service mysql start \
     && mysql -uroot -proot -e "GRANT ALL ON *.* TO root@'%' IDENTIFIED BY 'root';" \
+    && sed -i '/^bind/s/bind.*/bind 0.0.0.0/' /etc/redis/redis.conf \
     && apt-get autoclean && apt-get clean && apt-get autoremove \
     && rm -rf /root/.npm /root/.composer /tmp/* /var/lib/apt/lists/*
 
