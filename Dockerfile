@@ -26,9 +26,9 @@ RUN apt-get update \
         libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
         libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
         ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils \
-    && apt-get install -y dnsmasq \
+    && apt-get install -y dnsmasq jq \
     && curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer \
-    && curl --silent --location https://deb.nodesource.com/setup_8.x | bash - \
+    && curl --silent --location https://deb.nodesource.com/setup_10.x | bash - \
     && gem install mailcatcher \
     && apt-get update && apt-get install -y --force-yes nodejs \
     && echo "mysql-server mysql-server/root_password password root" | debconf-set-selections \
@@ -53,10 +53,14 @@ RUN sed -i "s/;opcache.enable=1/opcache.enable=1/" /etc/php/7.1/cli/php.ini \
 RUN curl -o /usr/local/bin/minio https://dl.minio.io/server/minio/release/linux-amd64/minio \ 
 	&& chmod +x /usr/local/bin/minio \
 	&& curl -o /usr/local/bin/minio-client https://dl.minio.io/client/mc/release/linux-amd64/mc \
-	&& chmod +x /usr/local/bin/minio-client
+	&& chmod +x /usr/local/bin/minio-client \
+    && curl -L -o /usr/local/bin/slack https://git.io/fAhXh \
+    && chmod +x /usr/local/bin/slack
 
 
 ADD ./minio /etc/init.d/minio
 ADD ./pipeline.sh /pipeline.sh
 ADD ./pipeline-testdox.sh /pipeline-testdox.sh
 ADD ./pipeline-on-failure.sh /pipeline-on-failure.sh
+
+WORKDIR /var/www/html/
