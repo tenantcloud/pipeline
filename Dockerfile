@@ -26,7 +26,7 @@ RUN apt-get update \
         libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
         libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 \
         ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils \
-    && apt-get install -y dnsmasq jq \
+    && apt-get install -y dnsmasq jq vim nano \
     && curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer \
     && curl --silent --location https://deb.nodesource.com/setup_10.x | bash - \
     && gem install mailcatcher \
@@ -57,6 +57,7 @@ RUN curl -o /usr/local/bin/minio https://dl.minio.io/server/minio/release/linux-
     && curl -L -o /usr/local/bin/slack https://git.io/fAhXh \
     && chmod +x /usr/local/bin/slack
 
+RUN composer global require hirak/prestissimo
 
 ADD ./minio /etc/init.d/minio
 ADD ./pipeline.sh /pipeline.sh
