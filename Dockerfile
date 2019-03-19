@@ -63,5 +63,6 @@ ADD ./minio /etc/init.d/minio
 ADD ./pipeline.sh /pipeline.sh
 ADD ./pipeline-testdox.sh /pipeline-testdox.sh
 ADD ./pipeline-on-failure.sh /pipeline-on-failure.sh
+ADD ./clone /usr/bin/clone
 
 WORKDIR /var/www/html/

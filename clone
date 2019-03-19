@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Clone repository"
+git archive --remote=ssh://git@bitbucket.org/tenantcloud/home.tenantcloud.com.git --format=zip \
+    --output="/tmp/tenantcloud.zip" $1
+echo "Extract files"
+rm -rf ./{.*,*} 2>/dev/null
+unzip -q /tmp/tenantcloud.zip -d /var/www/html
+rm /tmp/tenantcloud.zip
+echo "Ready!"
+echo -e "Run pipeline: \033[1m/pipeline-parallel.sh\033[0m or /pipeline{-on-failure,-testdox,-parallel}.sh"
