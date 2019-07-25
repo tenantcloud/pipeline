@@ -36,6 +36,10 @@ RUN apt-get update \
     && apt-get install -y mysql-server \
     && sed -i '/^bind-address/s/bind-address.*=.*/bind-address = */' /etc/mysql/mysql.conf.d/mysqld.cnf \
     && service mysql start \
+    && apt-get install wget gnupg2 openjdk-8-jdk -y \
+    && wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add - \
+    && wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.7.2.deb && dpkg -i elasticsearch-6.7.2.deb \
+    && update-rc.d elasticsearch defaults 95 10 \
     && mysql -uroot -proot -e "GRANT ALL ON *.* TO root@'%' IDENTIFIED BY 'root';" \
     && sed -i '/^bind/s/bind.*/bind 0.0.0.0/' /etc/redis/redis.conf \
     && apt-get autoclean && apt-get clean && apt-get autoremove \
